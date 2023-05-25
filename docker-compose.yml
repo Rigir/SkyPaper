@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: docker/nginx
+    container_name: skypaper-nginx
+    restart: unless-stopped
+    volumes:
+      # this will mount the backend folder which contains the code to the docker container
+      - ./services/backend:/var/www/backend:delegated
+      # this will mount the nginx logs so that you can check the logs for errors,
+      # without logging into the container
+      - ./logs/nginx/:/var/log/nginx:delegated
+      # this will create the server config to serve the backend
+      - ./docker/nginx/backend.conf:/etc/nginx/conf.d/backend.conf:delegated
+    ports:
+    - "90:80"
+    depends_on:
+      - backend
+      - frontend
+
+  backend:
+    build: docker/php
+    container_name: skypaper-backend
+    restart: unless-stopped
+    volumes:
+      # this will mount the backend folder which contains the code to the docker container
+      - ./services/backend:/var/www/backend:delegated
+      # this will mount the custom `.ini` to the container
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./services/frontend/dev.Dockerfile
+    container_name: skypaper-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    volumes:
+      # this will mount the frontend folder which contains the code to the docker container
+      - ./services/frontend:/var/www/frontend
+    ports:
+    - "3000:3000"
