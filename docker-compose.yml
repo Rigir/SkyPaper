@@ -1,10 +1,20 @@
 version: "3.8"
+x-app:
+  &default-app
+  restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
 
 services:
   nginx:
-    build: docker/nginx
+    <<: *default-app
     container_name: skypaper-nginx
-    restart: unless-stopped
+    build:
+      context: "./docker/nginx"
+      dockerfile: Dockerfile
+    ports:
+      - "${DOCKER_NGINX_PORT_OUT}:${NGINX_PORT}"
+    depends_on:
+      - backend
+      - frontend
     volumes:
       # this will mount the backend folder which contains the code to the docker container
       - ./services/backend:/var/www/backend:delegated
@@ -13,16 +23,13 @@ services:
       - ./logs/nginx/:/var/log/nginx:delegated
       # this will create the server config to serve the backend
       - ./docker/nginx/backend.conf:/etc/nginx/conf.d/backend.conf:delegated
-    ports:
-    - "90:80"
-    depends_on:
-      - backend
-      - frontend
 
   backend:
-    build: docker/php
+    <<: *default-app
     container_name: skypaper-backend
-    restart: unless-stopped
+    build:
+      context: "./docker/php"
+      dockerfile: Dockerfile
     volumes:
       # this will mount the backend folder which contains the code to the docker container
       - ./services/backend:/var/www/backend:delegated
@@ -30,15 +37,18 @@ services:
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
 
   frontend:
+    <<: *default-app
     build: 
-      context: .
-      dockerfile: ./services/frontend/dev.Dockerfile
+      context: "./services/frontend"
+      dockerfile: dev.Dockerfile
     container_name: skypaper-frontend
-    restart: unless-stopped
+    ports:
+      - "${DOCKER_FRONTEND_PORT_OUT}:${FRONTEND_PORT}"
     depends_on:
       - backend
     volumes:
       # this will mount the frontend folder which contains the code to the docker container
       - ./services/frontend:/var/www/frontend
-    ports:
-    - "3000:3000"
+    environment:
+      - FRONTEND_PORT=${DOCKER_FRONTEND_PORT_OUT}
+      - BACKEND_URL=${BACKEND_DOMAIN}:${DOCKER_NGINX_PORT_OUT}

@@ -5,10 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    port: parseInt(process.env.FRONTEND_PORT),
     host: true,
     watch: {
       usePolling: true,
     }
+  },
+  define: {
+    'import.meta.env.BACKEND_URL': JSON.stringify(`${process.env.BACKEND_URL}/api/v1`),
   }
 })
