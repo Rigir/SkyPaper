@@ -13,9 +13,15 @@ class TransportController extends AbstractController
     public function index(): JsonResponse
     {
         return new JsonResponse([
-            'types' => [
-                'Airbus A380' => 35000,
-                'Boeing 747' => 38000,
+            'aircraft_types' => [
+                [
+                    'name' =>  'Airbus A380',
+                    'max_payload_weight_in_kg' => 35000
+                ],
+                [
+                    'name' =>  'Boeing 747',
+                    'max_payload_weight_in_kg' => 38000
+                ]
             ]
         ]);
     }
