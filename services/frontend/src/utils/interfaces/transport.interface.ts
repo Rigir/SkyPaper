@@ -2,7 +2,7 @@ import { ICargoDetails } from "./cargo.interface"
 
 export interface ITransportAircraftType {
     name: string,
-    max_payload_weight_in_kg: number,
+    max_weight_in_kg: number,
 }
 
 export interface ITransportDTO {

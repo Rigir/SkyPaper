@@ -20,15 +20,6 @@ export default function index() {
         console.log(values);
     };
 
-
-    // const handleSelectChange = (event: any) => {
-    //     const nameOfAircraft = event.target.value;
-    //     const selectedAircraftType = transportForm.aircraft_types.find(type => type.name === nameOfAircraft);
-    //     const maxPayloadWeight = selectedAircraftType ? selectedAircraftType.max_payload_weight_in_kg : 0;
-    //     initialFormValues.aircraft_type.name = nameOfAircraft;
-    //     initialFormValues.aircraft_type.max_payload_weight_in_kg = maxPayloadWeight;
-    // }
-
     return (
         <div className="addUserForm">
             <Formik
@@ -59,7 +50,7 @@ export default function index() {
                                 <Field as="select" id="aircraft_type" name="aircraft_type">
                                     <option value="" disabled>Select an aircraft type</option>
                                     {transportForm.aircraft_types.map((type, i) => (
-                                        <option key={i += 1} value={type.max_payload_weight_in_kg}>
+                                        <option key={i += 1} value={type.max_weight_in_kg}>
                                             {type.name}
                                         </option>
                                     ))}
@@ -90,7 +81,7 @@ export default function index() {
                                         <h2>Cargo</h2>
                                         {values.cargos.map((_, index) => {
                                             const cargoName = `cargos[${index}].name`;
-                                            const cargoWeight = `cargos[${index}].payload_weight_in_kg`;
+                                            const cargoWeight = `cargos[${index}].weight_in_kg`;
                                             const cargoType = `cargos[${index}].type`;
 
                                             return (
@@ -128,7 +119,7 @@ export default function index() {
                                         {form.errors.cargos && typeof form.errors.cargos === 'string' && (
                                             <div>{form.errors.cargos}</div>
                                         )}
-                                        <button type="button" onClick={() => push({ name: "", payload_weight_in_kg: 0, type: "" })}>
+                                        <button type="button" onClick={() => push({ name: "", weight_in_kg: 0, type: "" })}>
                                             Add Cargo
                                         </button>
                                     </div>

@@ -16,11 +16,11 @@ class TransportController extends AbstractController
             'aircraft_types' => [
                 [
                     'name' =>  'Airbus A380',
-                    'max_payload_weight_in_kg' => 35000
+                    'max_weight_in_kg' => 35000
                 ],
                 [
                     'name' =>  'Boeing 747',
-                    'max_payload_weight_in_kg' => 38000
+                    'max_weight_in_kg' => 38000
                 ]
             ]
         ]);
