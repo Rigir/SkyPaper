@@ -15,7 +15,7 @@ export const transportSchema:ObjectSchema<ITransportForm> = object({
     .min(new Date().toISOString().split('T')[0], 'Date must be a future date')
     .test('is-not-weekend', 'Weekends are not allowed', (value) => !isWeekend(value)),
     cargos: array().of(cargoSchema).required().min(1, "At least one cargo must be added")
-    .test('validate-cargo-weight', (cargos, testContext) => { //  '',
+    .test('validate-cargo-weight', (cargos, testContext) => {
         const selected_type_max_weight = parseInt(testContext.parent.aircraft_type);
         if(selected_type_max_weight){
             const acuredErrors: ValidationError[] = cargos.reduce((errors: ValidationError[], cargo: { weight_in_kg: number }, index) => {
