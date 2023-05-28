@@ -103,59 +103,61 @@ export default function index() {
                                                 <div className="form-field-error-message">{form.errors.cargos}</div>
                                             )}
                                         </div>
-                                        {values.cargos.map((_, index) => {
-                                            const cargoName = `cargos[${index}].name`;
-                                            const cargoWeight = `cargos[${index}].weight_in_kg`;
-                                            const cargoType = `cargos[${index}].type`;
+                                        <div className="form-cargo-list-items" contentEditable="false" data-ph="Add item to the list..">
+                                            {values.cargos.map((_, index) => {
+                                                const cargoName = `cargos[${index}].name`;
+                                                const cargoWeight = `cargos[${index}].weight_in_kg`;
+                                                const cargoType = `cargos[${index}].type`;
 
-                                            return (
-                                                <div key={index} className="form-cargo-list-item">
-                                                    <div>
-                                                        <div className="form-field-container">
-                                                            <label htmlFor={cargoName}>Name:</label>
-                                                            <Field name={cargoName} type="text" />
+                                                return (
+                                                    <div key={index} className="form-cargo-list-item">
+                                                        <div>
+                                                            <div className="form-field-container">
+                                                                <label htmlFor={cargoName}>Name:</label>
+                                                                <Field name={cargoName} type="text" />
 
+                                                            </div>
+                                                            <div className="form-field-error-message">
+                                                                <ErrorMessage name={cargoName} />
+                                                            </div>
                                                         </div>
-                                                        <div className="form-field-error-message">
-                                                            <ErrorMessage name={cargoName} />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="form-field-container">
-                                                            <label htmlFor={cargoWeight}>Weight:</label>
-                                                            <Field name={cargoWeight} type="number" />
+                                                        <div>
+                                                            <div className="form-field-container">
+                                                                <label htmlFor={cargoWeight}>Weight:</label>
+                                                                <Field name={cargoWeight} type="number" />
 
+                                                            </div>
+                                                            <div className="form-field-error-message">
+                                                                <ErrorMessage name={cargoWeight} />
+                                                            </div>
                                                         </div>
-                                                        <div className="form-field-error-message">
-                                                            <ErrorMessage name={cargoWeight} />
+                                                        <div>
+                                                            <div className="form-field-container">
+                                                                <label htmlFor={cargoType}>Type:</label>
+                                                                <Field as="select" id="type" name={cargoType}>
+                                                                    <option value="" disabled>Select an cargo type</option>
+                                                                    {transportForm.cargo_types.map((type: string, index: number) => (
+                                                                        <option key={index} value={type}>
+                                                                            {type}
+                                                                        </option>
+                                                                    ))}
+                                                                </Field>
+                                                            </div>
+                                                            <div className="form-field-error-message">
+                                                                <ErrorMessage name={cargoType} />
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div className="form-field-container">
+                                                                <button type="button" onClick={() => remove(index)}>
+                                                                    Remove
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <div className="form-field-container">
-                                                            <label htmlFor={cargoType}>Type:</label>
-                                                            <Field as="select" id="type" name={cargoType}>
-                                                                <option value="" disabled>Select an cargo type</option>
-                                                                {transportForm.cargo_types.map((type: string, index: number) => (
-                                                                    <option key={index} value={type}>
-                                                                        {type}
-                                                                    </option>
-                                                                ))}
-                                                            </Field>
-                                                        </div>
-                                                        <div className="form-field-error-message">
-                                                            <ErrorMessage name={cargoType} />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="form-field-container">
-                                                            <button type="button" onClick={() => remove(index)}>
-                                                                Remove
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
+                                                );
+                                            })}
+                                        </div>
                                     </div>
                                 )
                                 }

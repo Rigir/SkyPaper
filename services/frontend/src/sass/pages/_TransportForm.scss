@@ -55,6 +55,19 @@
                 align-items: center;
             }
 
+            .form-cargo-list-items {
+                &[contentEditable=false]:empty:not(:focus):before {
+                    content: attr(data-ph);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100px;
+                    border: 2px dashed $secondary_color;
+                    opacity: 0.8;
+                    border-radius: 10px;
+                }
+            }
+
             .form-cargo-list-item {
                 display: flex;
 
@@ -87,7 +100,8 @@
 
             label {
                 font-size: 20px;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
+                text-align: center;
 
                 &::first-letter {
                     text-transform: capitalize;
@@ -107,6 +121,7 @@
                 text-align: center;
                 border: 2px dashed $secondary_color;
                 border-radius: 10px;
+                opacity: 0.8;
             }
 
             .accepted-files {
