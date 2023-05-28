@@ -1,0 +1,17 @@
+@import '../base/index.scss';
+
+input,
+select {
+    border-radius: 5px;
+    background: $primary_color;
+    border: 1px solid $secondary_color;
+    font-size: 16px;
+    line-height: 12px;
+    padding: 7px 8px;
+    color: $text_color;
+    box-shadow: none;
+
+    &:focus {
+        background-color: #fff;
+    }
+}

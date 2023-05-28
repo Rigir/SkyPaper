@@ -1,0 +1,155 @@
+@import '../base/index.scss';
+
+.form-container {
+    .form-field-error-message {
+        color: $danger_color;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        font-family: Arial;
+    }
+
+    form {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: $screen-sm 1050px;
+        grid-template-rows: 400px 100px auto;
+        padding: 25px;
+
+        .form-transportation-data {
+            grid-area: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-shipping-documents {
+            grid-area: 3;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-submit-button {
+            grid-area: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0 10px 0;
+
+            button {
+                width: 250px;
+            }
+        }
+
+        .form-cargo-list {
+            grid-area: 1/2/-1;
+            padding: 10px;
+
+            .form-cargo-list-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .form-cargo-list-item {
+                display: flex;
+
+                min-width: $screen-lg;
+                justify-content: center;
+                align-items: center;
+                padding: 5px 0 5px 0;
+                margin-bottom: 5px;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $secondary_color;
+                }
+
+                >div {
+                    width: 100%;
+                }
+
+                .form-field-error-message {
+                    min-height: 16px;
+                }
+            }
+
+
+        }
+
+        .form-field-container {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+
+            label {
+                font-size: 20px;
+                margin-bottom: 5px;
+
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+            }
+
+            input,
+            select {
+                min-width: 210px;
+            }
+        }
+
+        .file-field {
+            .drop-area {
+                padding: 10px;
+                margin-bottom: 10px;
+                text-align: center;
+                border: 2px dashed $secondary_color;
+                border-radius: 10px;
+            }
+
+            .accepted-files {
+                font-size: 20px;
+                width: 350px;
+                max-height: 100px;
+                overflow-y: scroll;
+                margin-left: 10px;
+
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: $secondary_color;
+                    border-radius: 5px;
+                }
+
+                div {
+                    margin: 5px 0 5px 0;
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                button {
+                    padding: 0;
+                    margin-right: 10px;
+                    background-color: $danger_color;
+                    border-radius: 50px;
+                    font-size: 15px;
+                    width: 30px;
+
+                    &::before {
+                        content: "x";
+                    }
+                }
+            }
+        }
+    }
+}
