@@ -32,21 +32,23 @@ export function FileField({ field, form }: { field: any; form: any }) {
     };
 
     return (
-        <div>
-            <div {...getRootProps()}>
+        <div className="file-field">
+            <div {...getRootProps()} className="drop-area">
                 <input {...getInputProps()} />
-                <p>Drag and drop files here, or click to select files </p>
-                <span>Allowed formats ".jpg", ".png", ".pdf", ".doc", ".docx"</span>
+                <div>Drag and drop files here, or click to select files. </div>
+                <div>".jpg", ".png", ".pdf", ".doc", ".docx"</div>
             </div>
-            <ErrorMessage name={field.name} />
-            <ul>
+            <div className="form-field-error-message">
+                <ErrorMessage name={field.name} />
+            </div>
+            <div className="accepted-files">
                 {acceptedFiles.map((file: File) => (
-                    <li key={file.name}>
-                        {file.name}
-                        <button type="button" onClick={() => handleRemoveFile(file.name)}>Remove</button>
-                    </li>
+                    <div key={file.name}>
+                        <span>{file.name}</span>
+                        <button type="button" onClick={() => handleRemoveFile(file.name)} />
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
