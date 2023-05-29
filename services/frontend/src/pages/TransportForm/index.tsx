@@ -1,11 +1,11 @@
 import { Field, Form, Formik, ErrorMessage, FieldArray } from "formik";
-import { useTransportFormData } from "../../utils/providers/TransportFormProvider";
+import { GetTransportFormDataContext } from "../../utils/providers/TransportFormProvider";
 import { transportSchema } from "../../utils/schemes/transport.schema";
 import { ITransportForm } from "../../utils/interfaces/transport.interface";
 import { FileField } from "./FileField";
 
 export default function index() {
-    const transportForm = useTransportFormData();
+    const transportForm = GetTransportFormDataContext();
 
     const initialFormValues: ITransportForm = {
         shipping_from: "",
