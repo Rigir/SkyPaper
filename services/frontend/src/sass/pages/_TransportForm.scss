@@ -1,4 +1,4 @@
-@import '../base/index.scss';
+@import "../base/index.scss";
 
 .form-container {
     .form-field-error-message {
@@ -12,7 +12,7 @@
     form {
         display: grid;
         justify-content: center;
-        grid-template-columns: $screen-sm 1050px;
+        grid-template-columns: 450px minmax(500px, 1050px);
         grid-template-rows: 400px 100px auto;
         padding: 25px;
 
@@ -22,11 +22,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
+            @media only screen and (max-width: $screen-xl) {
+                flex-direction: row;
+            }
+
+            @media only screen and (max-width: $screen-lg) {
+                flex-direction: column;
+            }
         }
 
         .form-shipping-documents {
-            grid-area: 3;
-            height: 100px;
+            grid-area: 3/-3;
+            // height: 100px;
             display: flex;
             justify-content: center;
         }
@@ -55,30 +63,61 @@
                 align-items: center;
             }
 
+            .form-cargo-list-item-placeholder {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100px;
+                flex-grow: 1;
+            }
+
             .form-cargo-list-items {
-                &[contentEditable=false]:empty:not(:focus):before {
-                    content: attr(data-ph);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100px;
-                    border: 2px dashed $secondary_color;
-                    opacity: 0.8;
-                    border-radius: 10px;
+                display: flex;
+                width: 100%;
+                max-height: 720px;
+                overflow-y: scroll;
+
+                border: 2px dashed $secondary_color;
+                padding: 10px;
+
+                border-radius: 10px;
+                flex-direction: column;
+                justify-content: center;
+                align-content: space-between;
+
+                @media only screen and (max-width: $screen-full) {
+                    max-height: 500px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                &:has(.error) {
+                    color: $danger_color;
+                    border: 2px dashed $danger_color;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: $secondary_color;
+                    border-radius: 5px;
                 }
             }
 
             .form-cargo-list-item {
                 display: flex;
 
-                min-width: $screen-lg;
-                justify-content: center;
                 align-items: center;
                 padding: 5px 0 5px 0;
+                margin: 0 10px 0 10px;
                 margin-bottom: 5px;
+                flex-direction: row;
 
-                &:not(:last-child) {
-                    border-bottom: 1px solid $secondary_color;
+                @media only screen and (max-width: $screen-full) {
+                    flex-direction: column;
+                    max-width: 300px;
                 }
 
                 >div {
@@ -89,8 +128,6 @@
                     min-height: 16px;
                 }
             }
-
-
         }
 
         .form-field-container {
@@ -110,7 +147,7 @@
 
             input,
             select {
-                min-width: 210px;
+                min-width: 180px;
             }
         }
 
@@ -165,6 +202,10 @@
                     }
                 }
             }
+        }
+
+        @media only screen and (max-width: $screen-xl) {
+            display: block;
         }
     }
 }
