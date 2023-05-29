@@ -1,8 +1,9 @@
-import { ErrorMessage } from "formik";
+import { ErrorMessage, FormikHelpers, FormikValues } from "formik";
 import { useDropzone } from "react-dropzone";
 import { useState } from "react";
+import { ITransportForm } from "../../utils/interfaces/transport.interface";
 
-export function FileField({ field, form }: { field: any; form: any }) {
+export function FileField({ field, form }: { field: FormikValues; form: FormikHelpers<ITransportForm> }) {
     const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
 
     const { getRootProps, getInputProps } = useDropzone({

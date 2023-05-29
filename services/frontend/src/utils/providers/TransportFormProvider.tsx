@@ -5,40 +5,40 @@ import { ITransportDTO } from "../interfaces/transport.interface";
 import { ICargoTypesDTO } from "../interfaces/cargo.interface";
 
 
-export interface ITransportForm extends ITransportDTO, ICargoTypesDTO { }
+export interface ITransportFormDTO extends ITransportDTO, ICargoTypesDTO { }
 
-const initialState: ITransportForm = {
+const initialState: ITransportFormDTO = {
     cargo_types: [],
     aircraft_types: []
 };
 
 const TransportFormDataContext = createContext(initialState);
 
-export function TransportFormDataProvider({ children }: any) {
+export function TransportFormDataProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true);
     const [transportFormData, setTransportFormData] = useState(initialState);
 
     const loadCargoTypes = async () => {
         try {
             const { data: { cargo_types } } = await getCargoType();
-            setTransportFormData((prevFormData: ITransportForm) => ({
+            setTransportFormData((prevFormData: ITransportFormDTO) => ({
                 ...prevFormData,
                 cargo_types: cargo_types,
             }));
-        } catch (err: any) {
-            console.log({ type: "error", message: err.message });
+        } catch (err: unknown) {
+            console.log({ type: "error", message: err });
         }
     }
 
     const loadAircraftTypes = async () => {
         try {
             const { data: { aircraft_types } } = await getAircraftType();
-            setTransportFormData((prevFormData: ITransportForm) => ({
+            setTransportFormData((prevFormData: ITransportFormDTO) => ({
                 ...prevFormData,
                 aircraft_types: aircraft_types,
             }));
-        } catch (err: any) {
-            console.log({ type: "error", message: err.message });
+        } catch (err: unknown) {
+            console.log({ type: "error", message: err });
         }
     }
 
