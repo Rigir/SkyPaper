@@ -29,11 +29,10 @@ RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} >
     && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini \
     && "date"
 
-CMD composer install
-CMD php-fpm -F
-
 COPY . /var/www/backend
 WORKDIR /var/www/backend
+
+CMD composer install && php-fpm -F
 
 EXPOSE 9000
     

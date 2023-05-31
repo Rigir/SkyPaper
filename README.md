@@ -1,5 +1,34 @@
 # SkyPaper 📄🛫
 
+## How to Run the App
+
+These instructions will guide you on how to run the app locally.
+
+`Delivered container environment is not suited for a production environment.`
+
+### Prerequisites
+
+Before running the app, make sure you have the following prerequisites installed:
+
+- Docker (version 23.0.6 or higher)
+- Docker compose (version 2.17.3 or higher)
+
+### Running the App
+
+1. Execute the following command:
+``` shell
+  docker compose up
+``` 
+   * This command will start the application and you should see output indicating that the app is running on a specified port.
+
+   * `The nginx server takes a long time to start, so make sure that before using application the endpoint "http://localhost:90/api/v1/health/check" returns status "I'm alive".`
+
+2. Open a web browser and navigate to the provided URL (e.g., http://localhost:3000) to access the app.
+
+### Stopping the App
+To stop the running app, you can press `Ctrl + C` in the terminal where the app is running. This will terminate the server and stop the app.
+
+## What was done:
 * [x] Do wynkonania: 
   * [x] Strona powinna być responsywna.
   * [x] Formularz transportu:
