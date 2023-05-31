@@ -6,7 +6,7 @@ x-app:
 services:
   nginx:
     <<: *default-app
-    container_name: skypaper-nginx
+    container_name: dev-skypaper-nginx
     build:
       context: "./docker/nginx"
       dockerfile: Dockerfile
@@ -26,7 +26,7 @@ services:
 
   backend:
     <<: *default-app
-    container_name: skypaper-backend
+    container_name: dev-skypaper-backend
     build:
       context: "./docker/php"
       dockerfile: Dockerfile
@@ -41,7 +41,7 @@ services:
     build: 
       context: "./services/frontend"
       dockerfile: dev.Dockerfile
-    container_name: skypaper-frontend
+    container_name: dev-skypaper-frontend
     ports:
       - "${DOCKER_FRONTEND_PORT_OUT}:${FRONTEND_PORT}"
     depends_on:

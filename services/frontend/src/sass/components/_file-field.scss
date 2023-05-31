@@ -1,0 +1,54 @@
+@import '../base/_index';
+
+.file-field {
+    .drop-area {
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        border: 2px dashed $secondary_color;
+        border-radius: 10px;
+        opacity: 0.8;
+    }
+
+    .accepted-files {
+        font-size: 20px;
+        width: 350px;
+        max-height: 100px;
+        overflow-y: scroll;
+        margin-left: 10px;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $secondary_color;
+            border-radius: 5px;
+        }
+
+        div {
+            margin: 5px 0 5px 0;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        button {
+            padding: 0;
+            margin-right: 10px;
+            background-color: $danger_color;
+            border-radius: 50px;
+            font-size: 15px;
+            width: 30px;
+
+            &::before {
+                content: "x";
+            }
+        }
+    }
+}
