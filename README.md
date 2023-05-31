@@ -19,16 +19,14 @@ Before running the app, make sure you have the following prerequisites installed
 ``` shell
   docker compose up
 ``` 
-   * This command will start the application and you should see output indicating that the app is running on a specified port.
-
-   * `The nginx server takes a long time to start, so make sure that before using application the endpoint "http://localhost:90/api/v1/health/check" returns status "I'm alive".`
+   * `It takes a long time to start the nginx server, so make sure the dev-skypaper-backend console shows "NOTICE: ready to handle connections".`
 
 2. Open a web browser and navigate to the provided URL (e.g., http://localhost:3000) to access the app.
 
 ### Stopping the App
 To stop the running app, you can press `Ctrl + C` in the terminal where the app is running. This will terminate the server and stop the app.
 
-## What was done:
+## What was done
 * [x] Do wynkonania: 
   * [x] Strona powinna być responsywna.
   * [x] Formularz transportu:
@@ -57,3 +55,14 @@ To stop the running app, you can press `Ctrl + C` in the terminal where the app 
   * [ ] Wiadomość powinna zawierać w załączniku:
     * [ ] Dane z formularza transportu
     * [ ] Tabelę z listą towarów zgłoszonychdo transportu,
+
+## Visualization
+
+Field validation:
+![field_validation](./.github/field_validation.gif)
+
+Completed form:
+![completed_form](./.github/completed_form.gif)
+
+Responsiveness:
+![responsiveness](./.github/responsiveness.gif)
